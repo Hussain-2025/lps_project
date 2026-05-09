@@ -1,7 +1,7 @@
 [build]
   base = "frontend"
   command = "npm install && npm run build"
-  publish = "frontend/dist"
+  publish = "dist"
 
 [build.environment]
   # Set this to your deployed backend URL (e.g., https://api.example.com)
