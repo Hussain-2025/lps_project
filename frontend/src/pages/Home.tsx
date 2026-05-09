@@ -6,6 +6,7 @@ import { useNotices } from "../features/notices/api";
 export function HomePage() {
   const notices = useNotices({ page: 1, includeUnpublished: false });
   const albums = useAlbums();
+  const hasData = (notices.data?.data?.length ?? 0) > 0 || (albums.data?.length ?? 0) > 0;
 
   return (
     <div>
@@ -50,35 +51,41 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container two-column">
-          <div>
-            <h2>Latest notices</h2>
-            <div className="stack">
-              {notices.data?.data.slice(0, 3).map((notice) => (
-                <Link className="card notice-card" key={notice._id} to={`/notices/${notice._id}`}>
-                  <strong>{notice.title}</strong>
-                  <span>{notice.tags.join(", ") || "General notice"}</span>
-                </Link>
-              ))}
+      {hasData || notices.isLoading || albums.isLoading ? (
+        <section className="section">
+          <div className="container two-column">
+            <div>
+              <h2>Latest notices</h2>
+              <div className="stack">
+                {notices.isLoading && <p>Loading notices...</p>}
+                {notices.isError && <p style={{ color: "#999" }}>Unable to load notices</p>}
+                {notices.data?.data?.slice(0, 3).map((notice) => (
+                  <Link className="card notice-card" key={notice._id} to={`/notices/${notice._id}`}>
+                    <strong>{notice.title}</strong>
+                    <span>{notice.tags.join(", ") || "General notice"}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h2>Featured gallery</h2>
+              <div className="gallery-preview-grid">
+                {albums.isLoading && <p>Loading gallery...</p>}
+                {albums.isError && <p style={{ color: "#999" }}>Unable to load gallery</p>}
+                {albums.data?.slice(0, 4).map((album) => (
+                  <Link className="gallery-tile" key={album._id} to={`/gallery/${album._id}`}>
+                    {album.coverImageUrl ? (
+                      <img alt={album.title} src={album.coverImageUrl} />
+                    ) : (
+                      <div className="gallery-placeholder">{album.title}</div>
+                    )}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
-          <div>
-            <h2>Featured gallery</h2>
-            <div className="gallery-preview-grid">
-              {albums.data?.slice(0, 4).map((album) => (
-                <Link className="gallery-tile" key={album._id} to={`/gallery/${album._id}`}>
-                  {album.coverImageUrl ? (
-                    <img alt={album.title} src={album.coverImageUrl} />
-                  ) : (
-                    <div className="gallery-placeholder">{album.title}</div>
-                  )}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
     </div>
   );
 }

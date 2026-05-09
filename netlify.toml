@@ -3,6 +3,13 @@
   command = "npm install && npm run build"
   publish = "frontend/dist"
 
+[build.environment]
+  # Set this to your deployed backend URL (e.g., https://api.example.com)
+  # Required for notices, gallery, and other API features
+  VITE_API_BASE_URL = "http://localhost:5000"
+  VITE_SCHOOL_NAME = "RPM Lovely Public Senior Secondary School"
+  VITE_ENABLE_GOOGLE_OAUTH = "false"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
