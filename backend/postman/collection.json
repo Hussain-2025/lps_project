@@ -1,0 +1,74 @@
+{
+  "info": {
+    "name": "LPSNLP Backend",
+    "_postman_id": "3b8cc53f-8b9d-4559-b3d0-92b31212f180",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health"
+      }
+    },
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Admin User\",\"email\":\"admin@example.com\",\"password\":\"StrongPass123\",\"role\":\"super_admin\"}"
+        },
+        "url": "{{baseUrl}}/api/v1/auth/register"
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"admin@example.com\",\"password\":\"StrongPass123\"}"
+        },
+        "url": "{{baseUrl}}/api/v1/auth/login"
+      }
+    },
+    {
+      "name": "Get Me",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+        ],
+        "url": "{{baseUrl}}/api/v1/users/me"
+      }
+    },
+    {
+      "name": "Create Admission",
+      "request": {
+        "method": "POST",
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "studentName", "value": "Aarav Sharma", "type": "text" },
+            { "key": "dob", "value": "2015-04-12", "type": "text" },
+            { "key": "classApplied", "value": "Class 1", "type": "text" },
+            { "key": "parentName", "value": "Priya Sharma", "type": "text" },
+            { "key": "email", "value": "parent@example.com", "type": "text" },
+            { "key": "phone", "value": "9999999999", "type": "text" },
+            { "key": "address", "value": "Krishna Nagar, Delhi", "type": "text" },
+            { "key": "academicYear", "value": "2026-2027", "type": "text" }
+          ]
+        },
+        "url": "{{baseUrl}}/api/v1/admissions"
+      }
+    }
+  ]
+}

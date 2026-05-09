@@ -1,0 +1,9 @@
+{
+  "id": "lpsnlp-local",
+  "name": "LPSNLP Local",
+  "values": [
+    { "key": "baseUrl", "value": "http://localhost:5000", "enabled": true },
+    { "key": "accessToken", "value": "", "enabled": true }
+  ]
+}
+
