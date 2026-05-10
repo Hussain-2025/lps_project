@@ -62,7 +62,7 @@ export function ERPLoginPage() {
           <p className="lead">
             The login flow is connected to the backend JWT and refresh-cookie session model.
           </p>
-          <img alt="School crest" className="login-crest" src="/lpsnlp-logo.svg" />
+          <img alt="School crest" className="login-crest" src="/logo.png" />
         </div>
         <form className="card surface-card form-card" onSubmit={form.handleSubmit(onSubmit)}>
           <h2>Sign in</h2>

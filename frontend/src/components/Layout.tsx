@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../auth/AuthProvider";
 import { env } from "../lib/env";
@@ -6,7 +6,7 @@ import { env } from "../lib/env";
 function Brand() {
   return (
     <NavLink className="brand" to="/">
-      <img alt="LPSNLP logo" src="/lpsnlp-logo.svg" />
+      <img alt="LPSNLP logo" src="/logo.png" />
       <span>
         <strong>LPSNLP School</strong>
         <small>{env.VITE_SCHOOL_NAME}</small>
@@ -63,14 +63,38 @@ export function PublicLayout() {
       </main>
       <footer className="site-footer">
         <div className="container footer-grid">
-          <div>
-            <h3>Lovely Public Sr. Sec. School</h3>
-            <p>New Layal Pur, Delhi · Est. 1966 · CBSE Affiliated</p>
+          <div className="footer-card">
+            <h3>About LPSNLP</h3>
+            <p>
+              RPM Lovely Public Senior Secondary School combines strong academic roots with a modern
+              digital experience for families, students, and the whole school community.
+            </p>
           </div>
-          <div>
-            <p>Phone: 011 4603 6232</p>
-            <p>School-first digital experience for admissions, notices, and community updates.</p>
+          <div className="footer-card">
+            <h3>Contact Information</h3>
+            <p>251 New Layalpur, East Delhi, India</p>
+            <p>Phone: +91 11 46036232</p>
+            <p>
+              Email: <a href="mailto:lpschoolnlp@gmail.com">lpschoolnlp@gmail.com</a>
+            </p>
           </div>
+          <div className="footer-card footer-actions">
+            <h3>Quick links</h3>
+            <div className="footer-links-grid">
+              <Link className="button button-secondary footer-button" to="/contact">
+                Contact Us
+              </Link>
+              <Link className="button button-secondary footer-button" to="/privacy">
+                Privacy Policy
+              </Link>
+              <Link className="button button-secondary footer-button" to="/terms">
+                Terms & Conditions
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>© 2026 Lovely Public School. All Rights Reserved.</p>
         </div>
       </footer>
     </div>
